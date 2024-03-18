@@ -1,4 +1,4 @@
-﻿namespace SampleConsoleApp.Examples
+namespace SampleConsoleApp.Examples
 {
     internal class Beginner
     {
@@ -53,6 +53,14 @@
                     return $"--==={name}===---";
                 case 4:
                     return FormatToAlternatingCaps(name);
+                case 5:
+                    return SnakeCase(name);
+                case 6:
+                    return CamelCase(name);
+                case 7:
+                    return FormatToHardCoded(name);
+                case 8:
+                    return OnlyO(name);
 
                 default: return name;
             }
@@ -75,10 +83,92 @@
             return stringToReturn;
         }
 
+        static string SnakeCase(string name){
+            var stringToReturn = "";
+
+            for (int i = 0; i < name.Length; i++)
+            {
+                if(name[i] == ' ')
+                {
+                    stringToReturn += '_';
+                }
+                else
+                {
+                    stringToReturn += name[i];
+                }
+            }
+
+            return stringToReturn;
+        }
+
+        static string CamelCase(string name){
+            
+            var interString = "";
+            var stringToReturn = "";
+
+            for (int i = 1; i < name.Length; i++)
+            {
+                if(name[i-1] == ' ')
+                {
+                    interString += name[i].ToString().ToUpper();
+                }
+                else
+                {
+                    interString += name[i];
+                }
+            }
+
+            for (int i = 0; i < interString.Length; i++)
+            {
+                if(name[i] != ' ')
+                {
+                    stringToReturn += name[i];
+                }
+            }
+
+            return stringToReturn;
+        }
+
         static string FormatToHardCoded(string name)
         {
             //TODO: change letter a to 4, o to 0 and e to 3
-            return name;
+            var stringToReturn = "";
+            for (int i = 0; i < name.Length; i++)
+            {
+                if(name[i] == 'a')
+                {
+                    stringToReturn += '4';
+                }
+                else if(name[i] == 'o')
+                {
+                    stringToReturn += '0';
+                }
+                else if(name[i] == 'e')
+                {
+                    stringToReturn += '3';
+                }
+                else
+                {
+                    stringToReturn += name[i];
+                }
+            }
+            return stringToReturn;
+        }
+
+        static string OnlyO(string name)
+        {
+            var stringToReturn = "";
+
+            for(int i = 0; i < name.Length; i++){
+                if(name[i] == 'a' || name[i] == 'e' || name[i] == 'i' || name[i] == 'o' || name[i] == 'u' || name[i] == 'y')
+                {
+                    stringToReturn += 'o';
+                }
+                else{
+                    stringToReturn += name[i];
+                }
+            }
+            return stringToReturn;
         }
     }
 }
