@@ -59,7 +59,7 @@ public class WeatherForecastController : ControllerBase
     {
         //TODO: Implement a external api call to 
         // https://learn.microsoft.com/en-us/rest/api/maps/weather/get-daily-forecast?view=rest-maps-2023-06-01&tabs=HTTP
-        
+        // use this API as the actual api unless you have an Azure account: https://open-meteo.com/
         //TODO: return bad request if date is in the past
         throw new NotImplementedException();
     }
