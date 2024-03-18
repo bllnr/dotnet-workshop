@@ -1,6 +1,6 @@
 ﻿namespace SampleConsoleApp.Examples
 {
-    internal class Easy
+    internal class Beginner
     {
         public static void Start()
         {
@@ -77,7 +77,7 @@
 
         static string FormatToHardCoded(string name)
         {
-            //TODO: add logic
+            //TODO: change letter a to 4, o to 0 and e to 3
             return name;
         }
     }
