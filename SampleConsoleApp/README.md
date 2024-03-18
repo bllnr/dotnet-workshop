@@ -1,17 +1,17 @@
 # Sample Console App
 
 ## Getting started
-Choose what level you want to start at by feature toggle Easy / Intermediat at Program.cs
+Choose what level you want to start at by feature toggle Easy / Intermediate at Program.cs
 
 Comment out the level you don't want to run
 
 Example to run Intermediate Mode:
 ```
- // Easy.Start();
+ // Beginner.Start();
 IntermediateApi.Start();
 ```
 
-## Easy
+## Beginner
 Formats user input based on user selection.
 Such as F L U F F Y and AlTeRnAtInG cApS
 
