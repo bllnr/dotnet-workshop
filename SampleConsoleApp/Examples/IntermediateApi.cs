@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 
 namespace SampleConsoleApp.Examples
 {
@@ -31,6 +31,12 @@ namespace SampleConsoleApp.Examples
                 case 1:
                     Console.WriteLine(apiConnector.GetRandomMeal());
                     break;
+                case 2:
+                    Console.WriteLine(apiConnector.GetMealFromIngredient());
+                    break;
+                case 3:
+                    Console.WriteLine(apiConnector.GetMealFromName());
+                    break;
                 default:
                     Console.WriteLine("Not implemented yet");
                     break;
@@ -57,9 +63,67 @@ namespace SampleConsoleApp.Examples
         public string GetRandomMeal()
         {
             var result = _httpClient.GetFromJsonAsync<Meals>("api/json/v1/1/random.php", CancellationToken.None).GetAwaiter().GetResult();
-            return result.meals.FirstOrDefault().strMeal;
+            
+            try
+            {
+                return result.meals.FirstOrDefault().strMeal;
+            }
+            catch (ArgumentNullException)
+            {
+                var returnNotFound = "No recipes found";
+                return returnNotFound;
+            }
         }
 
+        public string GetMealFromIngredient()
+        {   
+            Console.WriteLine("Input main ingredient:");
+            var ingredient = Console.ReadLine();
+            var queryString = "api/json/v1/1/filter.php?i=";
+
+            for(int i = 0; i < ingredient.Length; i++)
+            {
+                if(ingredient[i] == ' ')
+                {
+                    queryString += '_';
+                }
+                else
+                {
+                    queryString += ingredient[i];
+                }
+            }
+            var result = _httpClient.GetFromJsonAsync<Meals>(queryString, CancellationToken.None).GetAwaiter().GetResult();
+            try
+            {
+                return result.meals.FirstOrDefault().strMeal;
+            }
+            catch (ArgumentNullException)
+            {
+                var returnNotFound = "No recipes found containing " + ingredient;
+                return returnNotFound;
+            }
+        }
+
+        public string GetMealFromName()
+        {   
+            Console.WriteLine("Enter word in recipe name:");
+            var word = Console.ReadLine();
+            
+            var queryString = "api/json/v1/1/search.php?s=";
+            queryString += word;
+            
+            var result = _httpClient.GetFromJsonAsync<Meals>(queryString, CancellationToken.None).GetAwaiter().GetResult();
+            
+            try
+            {
+                return result.meals.FirstOrDefault().strMeal;
+            }
+            catch (ArgumentNullException)
+            {
+                var returnNotFound = "No recipes found with name including " + word;
+                return returnNotFound;
+            }
+        }
     }
 
     public class Meals
