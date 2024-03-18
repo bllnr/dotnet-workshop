@@ -79,3 +79,12 @@ Read more about angular in .NET in [Microsofts documentation](https://learn.micr
 
 Get started with Visual Studio Code
 https://learn.microsoft.com/sv-se/shows/dotnet/get-started-vscode-csharp-net-core-windows
+
+
+## Tasks
+
+Search in repo for *TODO* to find places where you can add new code.
+
+![Sample Console App](./Images/SampleConsoleApplication.png)
+![Sample API App](./Images/SampleApiApplication.png)
+![Sample Angular App](./Images/SampleAngularApplication.png)
